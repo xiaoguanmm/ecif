@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gt.ecif.mapper.StatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.gt.ecif.entity.Statistics">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NUM" jdbcType="INTEGER" property="num" />
+    <result column="STATISTICS_DATE" jdbcType="DATE" property="statisticsDate" />
+    <result column="STATISTICS_TIME" jdbcType="TIMESTAMP" property="statisticsTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TYPE, NAME, NUM, STATISTICS_DATE, STATISTICS_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from statistics
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from statistics
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gt.ecif.entity.Statistics">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics (TYPE, NAME, NUM, 
+      STATISTICS_DATE, STATISTICS_TIME)
+    values (#{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{statisticsDate,jdbcType=DATE}, #{statisticsTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gt.ecif.entity.Statistics">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into statistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+      <if test="statisticsDate != null">
+        STATISTICS_DATE,
+      </if>
+      <if test="statisticsTime != null">
+        STATISTICS_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        #{statisticsDate,jdbcType=DATE},
+      </if>
+      <if test="statisticsTime != null">
+        #{statisticsTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gt.ecif.entity.Statistics">
+    update statistics
+    <set>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        STATISTICS_DATE = #{statisticsDate,jdbcType=DATE},
+      </if>
+      <if test="statisticsTime != null">
+        STATISTICS_TIME = #{statisticsTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gt.ecif.entity.Statistics">
+    update statistics
+    set TYPE = #{type,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=INTEGER},
+      STATISTICS_DATE = #{statisticsDate,jdbcType=DATE},
+      STATISTICS_TIME = #{statisticsTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

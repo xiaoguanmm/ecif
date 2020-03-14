@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title,links,styles,scripts)">
+    <meta charset="utf-8">
+    <title th:replace="${title}">ECIF 工具管理平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+    <link th:href="@{/static/css/bootstrap.min14ed.css}" rel="stylesheet">
+    <link th:href="@{/static/css/font-awesome.min93e3.css}" rel="stylesheet">
+    <link th:href="@{/static/css/style.min862f.css}" rel="stylesheet">
+    <link th:href="@{/static/css/bootstrapValidator.css}" rel="stylesheet">
+    <link th:href="@{/static/css/jquery-ui.css}" rel="stylesheet">
+    <!-- jqgrid-->
+    <link th:href="@{/static/css/ui.jqgridffe4.css}" rel="stylesheet">
+    <link th:href="@{/static/js/plugins/layui/css/layui.css}" rel="stylesheet">
+    <link th:href="@{/static/css/profile.min.css}" rel="stylesheet">
+    <link th:href="@{/static/css/base.css}" rel="stylesheet">
+    <!--浏览器顶部显示公司品牌图标引入  -->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/static/img/iconkey.svg}" media="screen" />
+
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+    <script th:src="@{/static/js/jquery-ui.js}"></script>
+
+    <!-- jquery-form.js -->
+    <!-- bootstrap -->
+    <script th:src="@{/static/js/bootstrap.min.js}"></script>
+    <!-- jqgrid-->
+    <script th:src="@{/static/js/plugins/jqgrid/i18n/grid.locale-cnffe4.js}"></script>
+    <script th:src="@{/static/js/plugins/jqgrid/jquery.jqGrid.minffe4.js}"></script>
+    <script th:src="@{/static/js/plugins/layer/layer.js}"></script>
+    <script th:src="@{/static/js/plugins/layui/layui.js}"></script>
+    <!-- validate表单校验 -->
+    <script th:src="@{/static/js/plugins/validate/bootstrapValidator.js}"></script>
+    <script th:src="@{/static/js/plugins/validate/zh_CN.js}"></script>
+    <script th:src="@{/static/js/plugins/validate/validator.js}"></script>
+    <script th:src="@{/static/js/common.js}" ></script>
+    <th:block th:replace="${links}" />
+    <th:block th:replace="${styles}" />
+    <th:block th:replace="${scripts}" />
+    <base th:href="${#request.getContextPath()}+'/'">
+</head>
+<body>
+
+</body>
+</html>

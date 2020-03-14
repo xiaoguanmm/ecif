@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::common_header(~{::title},~{::link},~{::style},~{::script})">
+    <title>角色授权</title>
+    <link th:href="@{/static/css/management.css}" rel="stylesheet">
+    <link th:href="@{/static/css/product.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/static/js/management.js}"></script>
+    <script type="text/javascript" th:src="@{/static/js/d3.v3.min.js}"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+            var auths = [[${authorities}]];
+            // auths = auths.substring(auths.indexOf("[")+1,auths.indexOf("]")).split(",");
+            var code = [[${code}]];
+        /*]]>*/
+
+    </script>
+    <script type="text/javascript" th:src="@{/static/js/roleAuthority.js}"></script>
+    <style type="text/css">
+        .authority-group{
+            padding:10px 0;
+        }
+        .link-line{
+            width:20px;
+            height:1px;
+            background-color:#ddd;
+            display: inline-block;
+            margin-bottom:4px;
+
+        }
+        .sub-authority{
+            margin-left: -30px;
+        }
+        .sub-authority1{
+            display: block;
+            margin-top: -50px;
+            margin-left: 98px;
+        }
+
+        .inline-div{
+            float: left;
+        }
+        circle:hover,polyline:hover{
+            cursor: pointer;
+        }
+        .node {
+            font: 12px sans-serif;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 1.5px;
+        }
+
+        .selected{
+            fill:#ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="bg-gray" >
+    <!--正文-->
+    <div class="bg-white">
+        <div class="bg-border">
+            <div class="title-head">
+                <img src="static/img/title-head.png">
+                <span>角色数据授权</span>
+            </div>
+
+            <div class="tabled-one">
+                <div class="role-management-empower-inpo">
+                    <span>角色名称：</span><span style="color:#fe0000" th:text="${roleName}"></span>
+                    <input id="roleId" type="hidden" th:value="${roleId}">
+                </div>
+                <div class="role-authority"></div>
+                <div class="modify-sure-reset modify-sure-reset-shot modify-sure-reset-auto">
+                    <button type="button" class="modify-reset modify-zong" onclick="history.go(-1);">
+                        <img src="static/img/guanbi.png">
+                        <span>关闭</span>
+                    </button>
+                    <button type="button" class="modify-sure modify-zong role-management-empower-baocun">
+                        <img src="static/img/baocun.png">
+                        <span>保存</span>
+                    </button>
+                </div>
+                <div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

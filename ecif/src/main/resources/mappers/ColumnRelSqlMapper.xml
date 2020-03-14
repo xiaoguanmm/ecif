@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gt.ecif.mapper.ColumnRelSqlMapper">
+  <resultMap id="BaseResultMap" type="com.gt.ecif.entity.ColumnRelSql">
+    <id column="COLLECTION_ID" jdbcType="INTEGER" property="collectionId" />
+    <id column="COLUMN_ID" jdbcType="INTEGER" property="columnId" />
+    <id column="SQL_ID" jdbcType="INTEGER" property="sqlId" />
+    <result column="CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="INTEGER" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COLLECTION_ID, COLUMN_ID, SQL_ID, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from column_rel_sql
+    where COLLECTION_ID = #{collectionId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=INTEGER}
+      and SQL_ID = #{sqlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from column_rel_sql
+    where COLLECTION_ID = #{collectionId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=INTEGER}
+      and SQL_ID = #{sqlId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gt.ecif.entity.ColumnRelSql">
+    insert into column_rel_sql (COLLECTION_ID, COLUMN_ID, SQL_ID, 
+      CREATED_BY, CREATED_TIME, UPDATED_BY, 
+      UPDATED_TIME)
+    values (#{collectionId,jdbcType=INTEGER}, #{columnId,jdbcType=INTEGER}, #{sqlId,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=INTEGER}, 
+      #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gt.ecif.entity.ColumnRelSql">
+    insert into column_rel_sql
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collectionId != null">
+        COLLECTION_ID,
+      </if>
+      <if test="columnId != null">
+        COLUMN_ID,
+      </if>
+      <if test="sqlId != null">
+        SQL_ID,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collectionId != null">
+        #{collectionId,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null">
+        #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="sqlId != null">
+        #{sqlId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gt.ecif.entity.ColumnRelSql">
+    update column_rel_sql
+    <set>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where COLLECTION_ID = #{collectionId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=INTEGER}
+      and SQL_ID = #{sqlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gt.ecif.entity.ColumnRelSql">
+    update column_rel_sql
+    set CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where COLLECTION_ID = #{collectionId,jdbcType=INTEGER}
+      and COLUMN_ID = #{columnId,jdbcType=INTEGER}
+      and SQL_ID = #{sqlId,jdbcType=INTEGER}
+  </update>
+</mapper>

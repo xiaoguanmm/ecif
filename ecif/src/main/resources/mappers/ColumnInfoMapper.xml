@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gt.ecif.mapper.ColumnInfoMapper">
+  <resultMap id="BaseResultMap" type="com.gt.ecif.entity.ColumnInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="TABLE_ID" jdbcType="INTEGER" property="tableId" />
+    <result column="COLUMN_NAME" jdbcType="VARCHAR" property="columnName" />
+    <result column="COLUMN_COMMENT" jdbcType="VARCHAR" property="columnComment" />
+    <result column="CODETABLE_ID" jdbcType="INTEGER" property="codetableId" />
+    <result column="CREATED_BY" jdbcType="INTEGER" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="INTEGER" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TABLE_ID, COLUMN_NAME, COLUMN_COMMENT, CODETABLE_ID, CREATED_BY, CREATED_TIME, 
+    UPDATED_BY, UPDATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from column_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from column_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gt.ecif.entity.ColumnInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into column_info (TABLE_ID, COLUMN_NAME, COLUMN_COMMENT, 
+      CODETABLE_ID, CREATED_BY, CREATED_TIME, 
+      UPDATED_BY, UPDATED_TIME)
+    values (#{tableId,jdbcType=INTEGER}, #{columnName,jdbcType=VARCHAR}, #{columnComment,jdbcType=VARCHAR}, 
+      #{codetableId,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gt.ecif.entity.ColumnInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into column_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        TABLE_ID,
+      </if>
+      <if test="columnName != null">
+        COLUMN_NAME,
+      </if>
+      <if test="columnComment != null">
+        COLUMN_COMMENT,
+      </if>
+      <if test="codetableId != null">
+        CODETABLE_ID,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableId != null">
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="columnName != null">
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnComment != null">
+        #{columnComment,jdbcType=VARCHAR},
+      </if>
+      <if test="codetableId != null">
+        #{codetableId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gt.ecif.entity.ColumnInfo">
+    update column_info
+    <set>
+      <if test="tableId != null">
+        TABLE_ID = #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="columnName != null">
+        COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnComment != null">
+        COLUMN_COMMENT = #{columnComment,jdbcType=VARCHAR},
+      </if>
+      <if test="codetableId != null">
+        CODETABLE_ID = #{codetableId,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gt.ecif.entity.ColumnInfo">
+    update column_info
+    set TABLE_ID = #{tableId,jdbcType=INTEGER},
+      COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      COLUMN_COMMENT = #{columnComment,jdbcType=VARCHAR},
+      CODETABLE_ID = #{codetableId,jdbcType=INTEGER},
+      CREATED_BY = #{createdBy,jdbcType=INTEGER},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=INTEGER},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
